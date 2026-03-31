@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Float, PerspectiveCamera, useScroll, Stars, Sparkles, Environment, Text, MeshDistortMaterial } from '@react-three/drei'
+import { Float, PerspectiveCamera, useScroll, Stars, Sparkles, Environment, Text, MeshDistortMaterial, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import gsap from 'gsap'
+import profileImg from '../assets/profile.jpg'
 
 export default function Experience() {
   const { width, height } = useThree((state) => state.viewport)
@@ -74,6 +75,8 @@ export default function Experience() {
 }
 
 function Desk() {
+  const profileTexture = useTexture(profileImg)
+
   return (
     <group position={[0, -0.5, 0]}>
       {/* Table Top */}
@@ -94,19 +97,10 @@ function Desk() {
             <boxGeometry args={[1.2, 0.8, 0.05]} />
             <meshStandardMaterial color="#222" />
          </mesh>
-         {/* Live Screen Content - Emit glow */}
+         {/* Laptop Screen Content - Profile Image */}
          <mesh position={[0, 0.4, 0.03]}>
             <planeGeometry args={[1.1, 0.7]} />
-            <meshStandardMaterial color="#00d4ff" emissive="#00d4ff" emissiveIntensity={2} />
-            <Text
-              position={[0, 0, 0.01]}
-              fontSize={0.05}
-              color="white"
-              anchorX="center"
-              anchorY="middle"
-            >
-              INDIA FITNESS LIVE
-            </Text>
+            <meshStandardMaterial map={profileTexture} emissive="#ffffff" emissiveIntensity={0.2} />
             <pointLight position={[0, 0, 0.1]} intensity={0.5} color="#00d4ff" distance={1} />
          </mesh>
       </group>
@@ -119,7 +113,7 @@ function Desk() {
         </mesh>
         <mesh position={[0, 0, 0.06]}>
           <planeGeometry args={[0.5, 1.1]} />
-          <meshStandardMaterial color="#a855f7" emissive="#a855f7" emissiveIntensity={1} />
+          <meshStandardMaterial map={profileTexture} emissive="#ffffff" emissiveIntensity={0.2} />
         </mesh>
       </group>
     </group>

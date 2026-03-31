@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import profileImg from '../assets/profile.jpg'
 
 export default function UI() {
   const [status, setStatus] = useState("")
@@ -32,6 +33,16 @@ export default function UI() {
       id: 'hero',
       content: (
         <div className="flex flex-col items-center justify-center h-screen px-10 text-center select-none pointer-events-none">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1 }}
+            className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-brand-blue/50 overflow-hidden mb-8 shadow-[0_0_50px_rgba(0,212,255,0.3)] relative group pointer-events-auto cursor-pointer"
+          >
+            <img src={profileImg} alt="Pratyush Kumar" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/20 to-transparent"></div>
+          </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,9 +74,19 @@ export default function UI() {
     {
       id: 'about',
       content: (
-        <div className="flex items-center justify-start h-screen px-10 md:px-32 select-none">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 h-screen px-10 md:px-32 select-none">
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1 }}
+            className="relative group"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-brand-blue to-brand-purple rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <img src={profileImg} alt="Pratyush Kumar" className="relative w-64 md:w-80 rounded-2xl border-2 border-brand-purple/50 object-cover shadow-2xl shadow-brand-purple/20" />
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-xl glass p-8 rounded-2xl border-l-4 border-brand-purple"

@@ -4,6 +4,7 @@ import { ScrollControls, Scroll } from '@react-three/drei'
 import Experience from './components/Experience'
 import UI from './components/UI'
 import CustomCursor from './components/CustomCursor'
+import profileImg from './assets/profile.jpg'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -18,6 +19,19 @@ function App() {
       <CustomCursor />
       <LoadingDots visible={!isLoaded} />
       
+      {/* PERSISTENT FLOATING AVATAR - BOTTOM RIGHT */}
+      <div className="fixed bottom-8 right-8 z-[200] pointer-events-auto">
+        <div className="relative group">
+          <div className="absolute -inset-2 bg-gradient-to-r from-brand-blue to-brand-purple rounded-full blur opacity-40 group-hover:opacity-100 transition duration-1000"></div>
+          <img 
+            src={profileImg} 
+            alt="Pratyush" 
+            className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-brand-blue/50 object-cover shadow-2xl transition-transform duration-500 hover:scale-110"
+          />
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-void-black animate-pulse"></div>
+        </div>
+      </div>
+
       <div className={`h-screen w-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Canvas
           shadows
