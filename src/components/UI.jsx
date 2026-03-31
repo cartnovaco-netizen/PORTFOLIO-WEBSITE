@@ -194,8 +194,8 @@ export default function UI() {
             </div>
             <div className="mt-12 flex justify-center gap-8 pointer-events-auto">
                <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">INSTAGRAM</a>
-               <a href="#" className="text-brand-blue hover:text-brand-purple transition-all interactive">TWITTER</a>
-               <a href="mailto:pratyush@example.com" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
+               <a href="https://github.com/cartnovaco-netizen" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">GITHUB</a>
+               <a href="mailto:cartnova.co@gmail.com" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
             </div>
           </motion.div>
           <p className="mt-12 text-gray-500 font-light orbitron text-[10px] tracking-[0.4em]">© 2026 PRATYUSH KUMAR ACCESS PROTOCOL</p>
