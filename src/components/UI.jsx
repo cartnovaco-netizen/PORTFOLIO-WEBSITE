@@ -90,10 +90,15 @@ export default function UI() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1.5 }}
-            className="text-xs sm:text-sm border border-brand-blue/30 px-6 py-2 rounded-full flex items-center gap-2"
+            className="flex flex-col items-center gap-4 mt-8"
           >
-             <span className="w-2 h-2 bg-brand-blue rounded-full animate-pulse"></span>
-             SCROLL TO ENTER INNER WORLD
+            <div className="text-xs sm:text-sm border border-brand-blue/30 px-6 py-2 rounded-full flex items-center gap-2 group hover:bg-brand-blue/10 transition-colors pointer-events-auto cursor-help">
+               <span className="w-2 h-2 bg-brand-blue rounded-full animate-pulse"></span>
+               SCROLL FAST FOR WARP SPEED
+            </div>
+            <div className="text-[10px] sm:text-xs text-brand-purple orbitron animate-pulse">
+               TAP THE PURPLE HUB TOP-RIGHT FOR SYSTEM SOUNDS
+            </div>
           </motion.div>
         </div>
       )
