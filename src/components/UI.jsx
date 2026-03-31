@@ -225,7 +225,7 @@ export default function UI() {
                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cartnova.co@gmail.com" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
             </div>
           </motion.div>
-          <p className="mt-12 text-gray-500 font-light orbitron text-[10px] tracking-[0.4em]">© 2026 PRATYUSH KUMAR ACCESS PROTOCOL</p>
+          <p className="mt-12 text-brand-blue font-bold orbitron text-[12px] tracking-[0.5em] glow-text">MADE UNDER CARTNOVA BY PRATYUSH</p>
         </div>
       )
     }
