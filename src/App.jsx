@@ -27,7 +27,7 @@ function App() {
           }}
         >
           <Suspense fallback={<group><mesh><sphereGeometry args={[0.1]} /><meshBasicMaterial color="#00d4ff" /></mesh></group>}>
-            <ScrollControls pages={4} damping={0.2}>
+            <ScrollControls pages={7} damping={0.2}>
               <Experience />
               <Scroll html>
                 <UI />

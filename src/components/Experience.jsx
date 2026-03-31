@@ -19,12 +19,12 @@ export default function Experience() {
     // Section 3: Project (0.5-0.75)
     // Section 4: Contact (0.75-1)
     
-    const targetX = Math.sin(scrollOffset * Math.PI * 2) * 2
-    const targetZ = 5 - (scrollOffset * 4)
-    const targetY = 2 + Math.cos(scrollOffset * Math.PI) * 1
+    const targetX = Math.sin(scrollOffset * Math.PI * 4) * 3
+    const targetZ = 5 - (scrollOffset * 10)
+    const targetY = 2 + Math.cos(scrollOffset * Math.PI * 2) * 1.5
 
-    state.camera.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), 0.1)
-    state.camera.lookAt(0, 0, 0)
+    state.camera.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), 0.05)
+    state.camera.lookAt(0, 0, -scrollOffset * 5)
 
     // Parallax on mouse
     const mouseX = state.mouse.x * 0.5
@@ -54,6 +54,18 @@ export default function Experience() {
 
       <Float speed={2.5} rotationIntensity={1} floatIntensity={1.5} position={[-4, 1, -1]}>
         <SkillSphere color="#a855f7" name="Node" />
+      </Float>
+
+      <Float speed={4} rotationIntensity={1.5} floatIntensity={2.5} position={[2, 0, -6]}>
+        <SkillSphere color="#00d4ff" name="Next.js" />
+      </Float>
+
+      <Float speed={2} rotationIntensity={0.5} floatIntensity={1} position={[-3, 3, -10]}>
+        <SkillSphere color="#a855f7" name="PostgreSQL" />
+      </Float>
+
+      <Float speed={3.5} rotationIntensity={2} floatIntensity={1} position={[4, -1, -14]}>
+        <SkillSphere color="#00d4ff" name="Docker" />
       </Float>
 
       <Environment preset="city" />

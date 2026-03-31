@@ -89,6 +89,92 @@ export default function UI() {
       )
     },
     {
+      id: 'skills_detail',
+      content: (
+        <div className="flex items-center justify-center h-screen px-10 select-none">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full max-w-4xl glass p-10 rounded-3xl border border-brand-blue/10"
+          >
+            <h2 className="text-3xl orbitron font-bold text-brand-blue mb-10 text-center uppercase tracking-widest">Core Arsenal</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { name: 'Frontend', items: ['React', 'Next.js', 'Three.js', 'Tailwind'] },
+                { name: 'Backend', items: ['Node.js', 'Express', 'Python', 'Go'] },
+                { name: 'Database', items: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase'] },
+                { name: 'Tools', items: ['Docker', 'AWS', 'GIT', 'Figma'] }
+              ].map(cat => (
+                <div key={cat.name} className="border-l border-brand-blue/30 pl-4 py-2 hover:bg-brand-blue/5 transition-colors group">
+                  <h3 className="text-brand-blue font-bold mb-3 group-hover:glow-text">{cat.name}</h3>
+                  <ul className="text-xs text-gray-400 space-y-1">
+                    {cat.items.map(item => <li key={item} className="hover:text-white transition-colors">• {item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      )
+    },
+    {
+      id: 'journey',
+      content: (
+        <div className="flex items-center justify-start h-screen px-10 md:px-32 select-none">
+          <motion.div 
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl"
+          >
+            <h2 className="text-4xl orbitron font-bold text-brand-purple mb-12 uppercase tracking-tighter">Galactic Journey</h2>
+            <div className="space-y-12">
+              {[
+                { year: '2024 - PRESENT', role: 'Full Stack Excellence', company: 'Freelance / Elite Projects', desc: 'Crafting high-end immersive web experiences like India Fitness and 3D interfaces.' },
+                { year: '2022 - 2023', role: 'Frontend Architect', company: 'Tech Innovators', desc: 'Spearheaded modern UI overhauls and optimized performance for enterprise dashboards.' }
+              ].map(job => (
+                <div key={job.year} className="relative pl-8 border-l-2 border-brand-purple/20 hover:border-brand-purple/60 transition-all group">
+                  <div className="absolute top-0 left-[-7px] w-3 h-3 bg-brand-purple rounded-full group-hover:scale-150 transition-transform shadow-[0_0_10px_#a855f7]"></div>
+                  <span className="text-[10px] orbitron text-brand-purple/60">{job.year}</span>
+                  <h3 className="text-xl font-bold text-white mt-1 group-hover:text-brand-purple transition-colors">{job.role}</h3>
+                  <p className="text-sm text-gray-500 mb-2">{job.company}</p>
+                  <p className="text-gray-400 text-sm leading-relaxed">{job.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      )
+    },
+    {
+      id: 'blueprint',
+      content: (
+        <div className="flex items-center justify-end h-screen px-10 md:px-32 select-none">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-xl glass p-10 rounded-3xl border-r-8 border-brand-blue"
+          >
+            <h2 className="text-3xl orbitron font-bold text-brand-blue mb-8 text-right">THE BLUEPRINT</h2>
+            <div className="space-y-6 text-right">
+              {[
+                { title: 'Performance First', desc: 'Every line of code is written with speed in mind. I aim for 60FPS animations and lightning-fast load times.' },
+                { title: 'Visual Poetry', desc: 'Interfaces should tell a story. I combine vibrant aesthetics with clean, functional design.' },
+                { title: 'Scalable Logic', desc: 'Building for the future. I design robust architectures that can grow with the product.' }
+              ].map(doc => (
+                <div key={doc.title} className="hover:translate-x-[-10px] transition-transform group">
+                   <h3 className="text-brand-blue font-bold text-lg mb-1">{doc.title}</h3>
+                   <p className="text-gray-400 text-sm">{doc.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      ),
+    },
+    {
       id: 'contact',
       content: (
          <div className="flex flex-col items-center justify-center h-screen px-10 text-center select-none">
