@@ -24,20 +24,20 @@ export default function UI() {
   }, [])
 
   useEffect(() => {
-    if (!isMuted) {
+    if (audioRef.current && !isMuted) {
       audioRef.current.play().catch(() => {
         console.log("User interaction required for audio")
         setIsMuted(true)
       })
-    } else {
+    } else if (audioRef.current) {
       audioRef.current.pause()
     }
   }, [isMuted])
 
   const playClick = () => {
-    if (!isMuted) {
+    if (audioRef.current && clickSoundRef.current && !isMuted) {
       clickSoundRef.current.currentTime = 0
-      clickSoundRef.current.play()
+      clickSoundRef.current.play().catch(() => {})
     }
   }
 

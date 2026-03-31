@@ -1,15 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Float, PerspectiveCamera, useScroll, Stars, Sparkles, Environment, Text, MeshDistortMaterial, useTexture } from '@react-three/drei'
+import { Float, useScroll, Stars, Sparkles, Environment, Text, MeshDistortMaterial, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
-import gsap from 'gsap'
 import profileImg from '../assets/profile.jpg'
 import fitnessPreview from '../assets/india_fitness.png'
+import cartnovaLogo from '../assets/cartnova_logo.png'
 
 export default function Experience() {
   const { width, height } = useThree((state) => state.viewport)
   const scroll = useScroll()
-  const cameraRef = useRef()
   const groupRef = useRef()
   const starsRef = useRef()
   
@@ -20,13 +19,13 @@ export default function Experience() {
     const scrollOffset = scroll.offset
     const scrollVelocity = Math.abs(scroll.delta)
     
-    // WARP SPEED EFFECT (Option #2) - High Visibility
+    // WARP SPEED EFFECT (Option #2) - Stabilized
     if (starsRef.current) {
-      starsRef.current.rotation.z += delta * (0.05 + scrollVelocity * 2)
-      // Stretch stars on Z axis for light-speed feel
-      starsRef.current.scale.z = 1 + scrollVelocity * 50
-      starsRef.current.scale.x = 1 + scrollVelocity * 5
-      starsRef.current.scale.y = 1 + scrollVelocity * 5
+      starsRef.current.rotation.z += delta * (0.02 + scrollVelocity * 0.5)
+      // Stretch stars on Z axis for light-speed feel, but keep it within WebGL limits
+      starsRef.current.scale.z = 1 + scrollVelocity * 20
+      starsRef.current.scale.x = 1 + scrollVelocity * 2
+      starsRef.current.scale.y = 1 + scrollVelocity * 2
     }
 
     // Camera movement based on scroll
@@ -41,8 +40,10 @@ export default function Experience() {
     // Parallax on mouse
     const mouseX = state.mouse.x * 0.5
     const mouseY = state.mouse.y * 0.5
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseX * 0.2, 0.1)
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouseY * 0.1, 0.1)
+    if (groupRef.current) {
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseX * 0.2, 0.1)
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouseY * 0.1, 0.1)
+    }
   })
 
   return (
@@ -89,7 +90,7 @@ export default function Experience() {
 
 function Desk() {
   const profileTexture = useTexture(profileImg)
-  const previewTexture = useTexture(fitnessPreview)
+  const cartnovaTexture = useTexture(cartnovaLogo)
 
   return (
     <group position={[0, -0.5, 0]}>
