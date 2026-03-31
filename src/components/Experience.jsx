@@ -97,10 +97,19 @@ function Desk() {
             <boxGeometry args={[1.2, 0.8, 0.05]} />
             <meshStandardMaterial color="#222" />
          </mesh>
-         {/* Laptop Screen Content - Profile Image */}
+         {/* Live Screen Content - Emit glow */}
          <mesh position={[0, 0.4, 0.03]}>
             <planeGeometry args={[1.1, 0.7]} />
-            <meshStandardMaterial map={profileTexture} emissive="#ffffff" emissiveIntensity={0.2} />
+            <meshStandardMaterial color="#00d4ff" emissive="#00d4ff" emissiveIntensity={2} />
+            <Text
+              position={[0, 0, 0.01]}
+              fontSize={0.05}
+              color="white"
+              anchorX="center"
+              anchorY="middle"
+            >
+              INDIA FITNESS LIVE
+            </Text>
             <pointLight position={[0, 0, 0.1]} intensity={0.5} color="#00d4ff" distance={1} />
          </mesh>
       </group>

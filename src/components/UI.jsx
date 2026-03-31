@@ -33,16 +33,6 @@ export default function UI() {
       id: 'hero',
       content: (
         <div className="flex flex-col items-center justify-center h-screen px-10 text-center select-none pointer-events-none">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1 }}
-            className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-brand-blue/50 overflow-hidden mb-8 shadow-[0_0_50px_rgba(0,212,255,0.3)] relative group pointer-events-auto cursor-pointer"
-          >
-            <img src={profileImg} alt="Pratyush Kumar" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/20 to-transparent"></div>
-          </motion.div>
-
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
