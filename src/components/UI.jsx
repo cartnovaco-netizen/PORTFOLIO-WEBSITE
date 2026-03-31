@@ -1,0 +1,130 @@
+import React from 'react'
+import { motion } from 'framer-motion'
+
+export default function UI() {
+  const sections = [
+    {
+      id: 'hero',
+      content: (
+        <div className="flex flex-col items-center justify-center h-screen px-10 text-center select-none pointer-events-none">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-6xl md:text-8xl orbitron font-bold glow-text mb-4 border-b-4 border-brand-blue pb-2"
+          >
+            PRATYUSH KUMAR
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="text-lg md:text-2xl font-light tracking-[0.2em] mb-10 text-brand-blue"
+          >
+            FULL STACK DEVELOPER
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1.5 }}
+            className="text-sm border border-brand-blue/30 px-6 py-2 rounded-full flex items-center gap-2"
+          >
+             <span className="w-2 h-2 bg-brand-blue rounded-full animate-pulse"></span>
+             SCROLL TO ENTER INNER WORLD
+          </motion.div>
+        </div>
+      )
+    },
+    {
+      id: 'about',
+      content: (
+        <div className="flex items-center justify-start h-screen px-10 md:px-32 select-none">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-xl glass p-8 rounded-2xl border-l-4 border-brand-purple"
+          >
+            <h2 className="text-3xl orbitron font-bold text-brand-purple mb-6 uppercase tracking-wider">The Vision</h2>
+            <p className="text-lg leading-relaxed text-gray-300 font-light">
+              I’m <span className="text-white font-bold">Pratyush Kumar</span>, a full stack developer focused on building fast, scalable, and visually engaging web experiences. I combine logic with design to create products that actually stand out.
+            </p>
+            <div className="mt-8 flex gap-4 pointer-events-auto">
+               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="bg-brand-purple/20 hover:bg-brand-purple/40 text-brand-purple border border-brand-purple/30 px-6 py-3 rounded-lg transition-all interactive">
+                 Follow Journal
+               </a>
+            </div>
+          </motion.div>
+        </div>
+      )
+    },
+    {
+      id: 'projects',
+      content: (
+        <div className="flex items-center justify-end h-screen px-10 md:px-32 select-none">
+           <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-xl glass p-8 rounded-2xl border-r-4 border-brand-blue text-right"
+          >
+            <h2 className="text-3xl orbitron font-bold text-brand-blue mb-6 uppercase tracking-wider">Elite Project</h2>
+            <h3 className="text-4xl font-bold mb-2">INDIA FITNESS</h3>
+            <p className="text-md font-light text-gray-400 mb-6 italic">Where Strength Meets Aesthetics</p>
+            <p className="text-lg leading-relaxed text-gray-300 mb-8 font-light">
+              A modern fitness platform with clean UI and structured plans. Built with high-performance frameworks to ensure 60FPS user engagement and fluid animations.
+            </p>
+            <div className="flex flex-wrap justify-end gap-2 mb-8 pointer-events-none">
+              {['React', 'GSAP', 'Next.js', 'PostgreSQL'].map(tech => (
+                <span key={tech} className="bg-brand-blue/10 text-brand-blue text-xs px-3 py-1 rounded-full border border-brand-blue/20">{tech}</span>
+              ))}
+            </div>
+            <div className="pointer-events-auto">
+               <a href="https://india-fitness.vercel.app/" target="_blank" className="inline-block bg-brand-blue/80 hover:bg-brand-blue text-black font-bold orbitron px-8 py-4 rounded transition-all transform hover:scale-105 interactive shadow-[0_0_20px_rgba(0,212,255,0.4)]">
+                 LIVE BROADCAST
+               </a>
+            </div>
+          </motion.div>
+        </div>
+      )
+    },
+    {
+      id: 'contact',
+      content: (
+         <div className="flex flex-col items-center justify-center h-screen px-10 text-center select-none">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="glass p-12 rounded-3xl border border-brand-blue/20"
+          >
+            <h2 className="text-4xl orbitron font-bold mb-10 glow-text text-brand-blue">INITIATE CONNECTION</h2>
+            <div className="flex flex-col gap-6 pointer-events-auto">
+               <input type="text" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive" />
+               <textarea rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive" />
+               <button className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive">
+                 SEND PACKET
+               </button>
+            </div>
+            <div className="mt-12 flex justify-center gap-8 pointer-events-auto">
+               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">INSTAGRAM</a>
+               <a href="#" className="text-brand-blue hover:text-brand-purple transition-all interactive">TWITTER</a>
+               <a href="mailto:pratyush@example.com" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
+            </div>
+          </motion.div>
+          <p className="mt-12 text-gray-500 font-light orbitron text-[10px] tracking-[0.4em]">© 2026 PRATYUSH KUMAR ACCESS PROTOCOL</p>
+        </div>
+      )
+    }
+  ]
+
+  return (
+    <div className="w-screen overflow-hidden">
+      {sections.map(section => (
+        <section key={section.id} id={section.id}>
+          {section.content}
+        </section>
+      ))}
+    </div>
+  )
+}
