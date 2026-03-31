@@ -11,18 +11,18 @@ export default function Experience() {
   const cameraRef = useRef()
   const groupRef = useRef()
 
+  const isMobile = width < height
+  const responsiveScale = isMobile ? Math.min(width * 0.12, 1) : 1
+
   useFrame((state) => {
     const scrollOffset = scroll.offset
     // Camera movement based on scroll
-    // 0 -> 1 scroll range
-    // Section 1: Intro (0-0.25)
-    // Section 2: Skills (0.25-0.5)
-    // Section 3: Project (0.5-0.75)
-    // Section 4: Contact (0.75-1)
     
-    const targetX = Math.sin(scrollOffset * Math.PI * 4) * 3
-    const targetZ = 5 - (scrollOffset * 10)
-    const targetY = 2 + Math.cos(scrollOffset * Math.PI * 2) * 1.5
+    // Narrow screens (Mobile) need more Z distance to see everything
+    const zBase = isMobile ? 8 : 5
+    const targetX = Math.sin(scrollOffset * Math.PI * 4) * (isMobile ? 1.5 : 3)
+    const targetZ = zBase - (scrollOffset * 10)
+    const targetY = (isMobile ? 1.5 : 2) + Math.cos(scrollOffset * Math.PI * 2) * 1.5
 
     state.camera.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), 0.05)
     state.camera.lookAt(0, 0, -scrollOffset * 5)
@@ -35,7 +35,7 @@ export default function Experience() {
   })
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} scale={[responsiveScale, responsiveScale, responsiveScale]}>
       <ambientLight intensity={0.2} />
       <pointLight position={[10, 10, 10]} intensity={1.5} color="#00d4ff" />
       <spotLight position={[-5, 5, 5]} angle={0.25} penumbra={1} intensity={2} color="#a855f7" castShadow />
