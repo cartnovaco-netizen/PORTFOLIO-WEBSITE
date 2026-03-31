@@ -1,11 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import profileImg from '../assets/profile.jpg'
 
 export default function UI() {
   const [status, setStatus] = useState("")
+  const [isMuted, setIsMuted] = useState(true)
+  const audioRef = useRef(null)
+  const clickSoundRef = useRef(null)
+
+  useEffect(() => {
+    // Ambient Background Loop
+    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/21/audio_3108df04db.mp3") // Cyber ambient
+    audioRef.current.loop = true
+    audioRef.current.volume = 0.2
+
+    // UI Click Sound
+    clickSoundRef.current = new Audio("https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3") // UI Click
+    clickSoundRef.current.volume = 0.4
+
+    return () => {
+      audioRef.current.pause()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isMuted) {
+      audioRef.current.play().catch(() => {
+        console.log("User interaction required for audio")
+        setIsMuted(true)
+      })
+    } else {
+      audioRef.current.pause()
+    }
+  }, [isMuted])
+
+  const playClick = () => {
+    if (!isMuted) {
+      clickSoundRef.current.currentTime = 0
+      clickSoundRef.current.play()
+    }
+  }
 
   const handleSubmit = async (e) => {
+    playClick()
     e.preventDefault()
     setStatus("TRANSMITTING...")
     const formData = new FormData(e.target)
@@ -85,8 +122,13 @@ export default function UI() {
             <p className="text-md sm:text-lg leading-relaxed text-gray-300 font-light">
               I’m <span className="text-white font-bold">Pratyush Kumar</span>, a full stack developer focused on building fast, scalable, and visually engaging web experiences. I combine logic with design to create products that actually stand out.
             </p>
-            <div className="mt-6 md:mt-8 flex gap-4 pointer-events-auto">
-               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="bg-brand-purple/20 hover:bg-brand-purple/40 text-brand-purple border border-brand-purple/30 px-6 py-3 rounded-lg transition-all interactive text-sm sm:text-base">
+             <div className="mt-6 md:mt-8 flex gap-4 pointer-events-auto">
+               <a 
+                 href="https://www.instagram.com/knownaspratyush_/" 
+                 target="_blank" 
+                 onClick={playClick}
+                 className="bg-brand-purple/20 hover:bg-brand-purple/40 text-brand-purple border border-brand-purple/30 px-6 py-3 rounded-lg transition-all interactive text-sm sm:text-base cursor-pointer"
+               >
                  Follow Journal
                </a>
             </div>
@@ -116,7 +158,12 @@ export default function UI() {
               ))}
             </div>
             <div className="pointer-events-auto">
-               <a href="https://india-fitness.vercel.app/" target="_blank" className="inline-block bg-brand-blue/80 hover:bg-brand-blue text-black font-bold orbitron px-6 py-3 sm:px-8 sm:py-4 rounded transition-all transform hover:scale-105 interactive shadow-[0_0_20px_rgba(0,212,255,0.4)] text-sm sm:text-base">
+               <a 
+                 href="https://india-fitness.vercel.app/" 
+                 target="_blank" 
+                 onClick={playClick}
+                 className="inline-block bg-brand-blue/80 hover:bg-brand-blue text-black font-bold orbitron px-6 py-3 sm:px-8 sm:py-4 rounded transition-all transform hover:scale-105 interactive shadow-[0_0_20px_rgba(0,212,255,0.4)] text-sm sm:text-base cursor-pointer"
+               >
                  LIVE BROADCAST
                </a>
             </div>
@@ -231,9 +278,9 @@ export default function UI() {
                {status && <p className="text-[10px] orbitron text-brand-blue animate-pulse mt-2">{status}</p>}
             </form>
             <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 pointer-events-auto text-[10px] sm:text-xs">
-               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">INSTAGRAM</a>
-               <a href="https://github.com/cartnovaco-netizen" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">GITHUB</a>
-               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cartnova.co@gmail.com" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
+               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" onClick={playClick} className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">INSTAGRAM</a>
+               <a href="https://github.com/cartnovaco-netizen" target="_blank" onClick={playClick} className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">GITHUB</a>
+               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cartnova.co@gmail.com" target="_blank" onClick={playClick} className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">EMAIL</a>
             </div>
           </motion.div>
           <p className="mt-8 md:mt-12 text-brand-blue font-bold orbitron text-[10px] md:text-[12px] tracking-[0.3em] md:tracking-[0.5em] glow-text">MADE UNDER CARTNOVA BY PRATYUSH</p>
@@ -244,6 +291,24 @@ export default function UI() {
 
   return (
     <div className="w-screen overflow-hidden">
+      {/* Audio Control (Option #3) */}
+      <div className="fixed top-8 right-8 z-[100] pointer-events-auto">
+        <button 
+          onClick={() => {
+            setIsMuted(!isMuted)
+            if (isMuted) playClick()
+          }}
+          className="glass p-4 rounded-full border border-brand-blue/30 text-brand-blue hover:bg-brand-blue/20 transition-all flex items-center gap-2 group interactive"
+        >
+          {isMuted ? (
+            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">ENGAGE AUDIO</span>
+          ) : (
+            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">SILENCE INTERFACE</span>
+          )}
+          <span className="text-lg">{isMuted ? "🔈" : "🔊"}</span>
+        </button>
+      </div>
+
       {sections.map(section => (
         <section key={section.id} id={section.id}>
           {section.content}

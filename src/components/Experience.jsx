@@ -1,24 +1,33 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Float, PerspectiveCamera, useScroll, Stars, Sparkles, Environment, Text, MeshDistortMaterial, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import profileImg from '../assets/profile.jpg'
+import fitnessPreview from '../assets/india_fitness.png'
 
 export default function Experience() {
   const { width, height } = useThree((state) => state.viewport)
   const scroll = useScroll()
   const cameraRef = useRef()
   const groupRef = useRef()
-
+  const starsRef = useRef()
+  
   const isMobile = width < height
   const responsiveScale = isMobile ? Math.min(width * 0.12, 1) : 1
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     const scrollOffset = scroll.offset
-    // Camera movement based on scroll
+    const scrollVelocity = scroll.delta
     
-    // Narrow screens (Mobile) need more Z distance to see everything
+    // WARP SPEED EFFECT (Option #2)
+    // Increase star count/factor and speed when scrolling fast
+    if (starsRef.current) {
+      starsRef.current.rotation.z += delta * 0.1
+      starsRef.current.scale.setScalar(1 + scrollVelocity * 5)
+    }
+
+    // Camera movement based on scroll
     const zBase = isMobile ? 8 : 5
     const targetX = Math.sin(scrollOffset * Math.PI * 4) * (isMobile ? 1.5 : 3)
     const targetZ = zBase - (scrollOffset * 10)
@@ -40,7 +49,9 @@ export default function Experience() {
       <pointLight position={[10, 10, 10]} intensity={1.5} color="#00d4ff" />
       <spotLight position={[-5, 5, 5]} angle={0.25} penumbra={1} intensity={2} color="#a855f7" castShadow />
       
-      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+      <group ref={starsRef}>
+         <Stars radius={100} depth={50} count={7000} factor={6} saturation={0} fade speed={1} />
+      </group>
       <Sparkles count={200} scale={[20, 20, 10]} size={2} speed={0.5} opacity={0.3} color="#00d4ff" />
       <fog attach="fog" args={['#0a0a0a', 5, 15]} />
 
@@ -76,6 +87,7 @@ export default function Experience() {
 
 function Desk() {
   const profileTexture = useTexture(profileImg)
+  const previewTexture = useTexture(fitnessPreview)
 
   return (
     <group position={[0, -0.5, 0]}>
@@ -97,19 +109,10 @@ function Desk() {
             <boxGeometry args={[1.2, 0.8, 0.05]} />
             <meshStandardMaterial color="#222" />
          </mesh>
-         {/* Live Screen Content - Emit glow */}
+         {/* Live Project Preview (Option #1) */}
          <mesh position={[0, 0.4, 0.03]}>
             <planeGeometry args={[1.1, 0.7]} />
-            <meshStandardMaterial color="#00d4ff" emissive="#00d4ff" emissiveIntensity={2} />
-            <Text
-              position={[0, 0, 0.01]}
-              fontSize={0.05}
-              color="white"
-              anchorX="center"
-              anchorY="middle"
-            >
-              INDIA FITNESS LIVE
-            </Text>
+            <meshStandardMaterial map={previewTexture} emissive="#ffffff" emissiveIntensity={0.3} />
             <pointLight position={[0, 0, 0.1]} intensity={0.5} color="#00d4ff" distance={1} />
          </mesh>
       </group>
