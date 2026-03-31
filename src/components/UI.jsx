@@ -149,10 +149,20 @@ export default function UI() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-xl glass p-6 md:p-8 rounded-2xl border-r-4 border-brand-blue text-center md:text-right"
+            className="max-w-xl glass p-6 md:p-8 rounded-2xl border-r-4 border-brand-blue text-center md:text-right relative overflow-hidden"
           >
+            {/* Blended Logo */}
+            <img 
+              src={fitnessLogo} 
+              alt="India Fitness" 
+              className="absolute -top-10 -right-10 w-40 h-40 opacity-10 pointer-events-none grayscale hover:grayscale-0 transition-all duration-500" 
+            />
+
             <h2 className="text-2xl sm:text-3xl orbitron font-bold text-brand-blue mb-4 md:mb-6 uppercase tracking-wider">Elite Project</h2>
-            <h3 className="text-3xl sm:text-4xl font-bold mb-2">INDIA FITNESS</h3>
+            <div className="flex items-center justify-center md:justify-end gap-4 mb-2">
+              <img src={fitnessLogo} alt="Logo" className="w-8 h-8 rounded-full border border-brand-blue/30" />
+              <h3 className="text-3xl sm:text-4xl font-bold">INDIA FITNESS</h3>
+            </div>
             <p className="text-sm sm:text-md font-light text-gray-400 mb-6 italic">Where Strength Meets Aesthetics</p>
             <p className="text-md sm:text-lg leading-relaxed text-gray-300 mb-8 font-light">
               A modern fitness platform with clean UI and structured plans. Built with high-performance frameworks to ensure 60FPS user engagement and fluid animations.
