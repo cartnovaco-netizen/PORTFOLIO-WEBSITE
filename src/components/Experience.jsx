@@ -18,13 +18,15 @@ export default function Experience() {
 
   useFrame((state, delta) => {
     const scrollOffset = scroll.offset
-    const scrollVelocity = scroll.delta
+    const scrollVelocity = Math.abs(scroll.delta)
     
-    // WARP SPEED EFFECT (Option #2)
-    // Increase star count/factor and speed when scrolling fast
+    // WARP SPEED EFFECT (Option #2) - High Visibility
     if (starsRef.current) {
-      starsRef.current.rotation.z += delta * 0.1
-      starsRef.current.scale.setScalar(1 + scrollVelocity * 5)
+      starsRef.current.rotation.z += delta * (0.05 + scrollVelocity * 2)
+      // Stretch stars on Z axis for light-speed feel
+      starsRef.current.scale.z = 1 + scrollVelocity * 50
+      starsRef.current.scale.x = 1 + scrollVelocity * 5
+      starsRef.current.scale.y = 1 + scrollVelocity * 5
     }
 
     // Camera movement based on scroll

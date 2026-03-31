@@ -272,7 +272,7 @@ export default function UI() {
                <input type="hidden" name="access_key" value="c1cefa47-9b89-476b-8bd1-ada665d42bea" />
                <input type="email" name="email" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive text-sm md:text-base" required />
                <textarea name="message" rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive text-sm md:text-base" required />
-               <button type="submit" className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive text-sm md:text-base">
+               <button type="submit" onClick={playClick} className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive text-sm md:text-base cursor-pointer">
                  {status || "SEND PACKET"}
                </button>
                {status && <p className="text-[10px] orbitron text-brand-blue animate-pulse mt-2">{status}</p>}
@@ -291,21 +291,21 @@ export default function UI() {
 
   return (
     <div className="w-screen overflow-hidden">
-      {/* Audio Control (Option #3) */}
+      {/* Audio Control (Option #3) - Highly Visible Neon Ripple */}
       <div className="fixed top-8 right-8 z-[100] pointer-events-auto">
         <button 
           onClick={() => {
             setIsMuted(!isMuted)
             if (isMuted) playClick()
           }}
-          className="glass p-4 rounded-full border border-brand-blue/30 text-brand-blue hover:bg-brand-blue/20 transition-all flex items-center gap-2 group interactive"
+          className={`glass p-4 rounded-full border-2 ${isMuted ? 'border-brand-blue/30' : 'border-brand-purple animate-pulse shadow-[0_0_20px_#a855f7]'} text-brand-blue hover:bg-brand-blue/20 transition-all flex items-center gap-2 group interactive`}
         >
           {isMuted ? (
-            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">ENGAGE AUDIO</span>
+            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">ENGAGE SYSTEM SOUNDS</span>
           ) : (
-            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">SILENCE INTERFACE</span>
+            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">SYSTEM ONLINE</span>
           )}
-          <span className="text-lg">{isMuted ? "🔈" : "🔊"}</span>
+          <span className="text-lg animate-bounce">{isMuted ? "🔈" : "🔊"}</span>
         </button>
       </div>
 
