@@ -185,17 +185,18 @@ export default function UI() {
             className="glass p-12 rounded-3xl border border-brand-blue/20"
           >
             <h2 className="text-4xl orbitron font-bold mb-10 glow-text text-brand-blue">INITIATE CONNECTION</h2>
-            <div className="flex flex-col gap-6 pointer-events-auto">
-               <input type="text" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive" />
-               <textarea rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive" />
-               <button className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive">
+            <form action="https://api.web3forms.com/submit" method="POST" className="flex flex-col gap-6 pointer-events-auto">
+               <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+               <input type="text" name="email" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive" required />
+               <textarea name="message" rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive" required />
+               <button type="submit" className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive">
                  SEND PACKET
                </button>
-            </div>
+            </form>
             <div className="mt-12 flex justify-center gap-8 pointer-events-auto">
                <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">INSTAGRAM</a>
                <a href="https://github.com/cartnovaco-netizen" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">GITHUB</a>
-               <a href="mailto:cartnova.co@gmail.com" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
+               <a href="mailto:cartnova.co@gmail.com" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive">EMAIL</a>
             </div>
           </motion.div>
           <p className="mt-12 text-gray-500 font-light orbitron text-[10px] tracking-[0.4em]">© 2026 PRATYUSH KUMAR ACCESS PROTOCOL</p>
