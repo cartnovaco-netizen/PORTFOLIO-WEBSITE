@@ -60,9 +60,6 @@ export default function UI() {
                <span className="w-2 h-2 bg-brand-blue rounded-full animate-pulse"></span>
                SCROLL FAST FOR WARP SPEED
             </div>
-            <div className="text-[10px] sm:text-xs text-brand-purple orbitron animate-pulse">
-               TAP THE PURPLE HUB TOP-RIGHT FOR SYSTEM SOUNDS
-            </div>
           </motion.div>
         </div>
       )
