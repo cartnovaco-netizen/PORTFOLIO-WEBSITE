@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     // Simulate loading
-    setTimeout(() => setIsLoaded(true), 2500)
+    setTimeout(() => setIsLoaded(true), 2000)
   }, [])
 
   return (
@@ -21,7 +21,7 @@ function App() {
         {!isLoaded && <LoadingDots key="loading" />}
       </AnimatePresence>
       
-      <div className={`h-screen w-full transition-opacity duration-1500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`h-screen w-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Canvas
           shadows
           camera={{ position: [0, 2, 5], fov: 45 }}
@@ -49,15 +49,15 @@ function LoadingDots() {
       initial={{ opacity: 1 }}
       exit={{ 
         opacity: 0,
-        scale: 1.5,
-        filter: 'blur(20px)',
-        transition: { duration: 0.8, ease: "circIn" }
+        scale: 1.2,
+        filter: 'blur(15px)',
+        transition: { duration: 0.5, ease: "circIn" }
       }}
       className="fixed inset-0 flex flex-col items-center justify-center bg-void-black z-[100] orbitron overflow-hidden"
     >
       <motion.div 
         initial={{ y: 0 }}
-        exit={{ y: -50, transition: { duration: 0.5 } }}
+        exit={{ y: -30, transition: { duration: 0.3 } }}
         className="flex flex-col items-center"
       >
         <div className="text-brand-blue text-[10px] md:text-xs tracking-[0.6em] mb-4 opacity-50 uppercase animate-pulse">
@@ -65,7 +65,7 @@ function LoadingDots() {
         </div>
         <div className="relative">
           <motion.div 
-            exit={{ letterSpacing: "1em", transition: { duration: 0.8 } }}
+            exit={{ letterSpacing: "0.8em", transition: { duration: 0.5 } }}
             className="text-white text-xl md:text-4xl font-bold tracking-[0.3em] md:tracking-[0.5em] glow-text text-center px-4"
           >
             ENTERING PRATYUSH WORLD
