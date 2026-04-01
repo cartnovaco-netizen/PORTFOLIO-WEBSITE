@@ -43,7 +43,7 @@ function LoadingDots({ visible }) {
   if (!visible) return null
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-void-black z-[100] orbitron">
-      <div className="text-brand-blue text-4xl mb-8 glow-text animate-pulse uppercase">INITIALIZING VOID...</div>
+      <div className="text-brand-blue text-4xl mb-8 glow-text animate-pulse">PRATYUSH</div>
       <div className="flex space-x-2">
         <div className="w-3 h-3 bg-brand-blue rounded-full animate-bounce [animation-delay:-0.3s]"></div>
         <div className="w-3 h-3 bg-brand-purple rounded-full animate-bounce [animation-delay:-0.15s]"></div>
