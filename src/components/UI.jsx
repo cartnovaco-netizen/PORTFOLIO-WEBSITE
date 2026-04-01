@@ -94,7 +94,7 @@ export default function UI() {
             className="relative group"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-brand-blue to-brand-purple rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <img src={profileImg} alt="Pratyush Kumar" className="relative w-48 sm:w-64 md:w-80 rounded-2xl border-2 border-brand-purple/50 object-cover shadow-2xl shadow-brand-purple/20" />
+            <img src={profileImg} alt="Pratyush Kumar" draggable="false" className="relative w-48 sm:w-64 md:w-80 rounded-2xl border-2 border-brand-purple/50 object-cover shadow-2xl shadow-brand-purple/20 select-none" />
           </motion.div>
 
           <motion.div 
@@ -134,12 +134,13 @@ export default function UI() {
             <img 
               src={fitnessLogo} 
               alt="India Fitness" 
+              draggable="false"
               className="absolute -top-10 -right-10 w-40 h-40 opacity-10 pointer-events-none grayscale hover:grayscale-0 transition-all duration-500" 
             />
 
             <h2 className="text-2xl sm:text-3xl orbitron font-bold text-brand-blue mb-4 md:mb-6 uppercase tracking-wider">Elite Project</h2>
             <div className="flex items-center justify-center md:justify-end gap-4 mb-2">
-              <img src={fitnessLogo} alt="Logo" className="w-8 h-8 rounded-full border border-brand-blue/30" />
+              <img src={fitnessLogo} alt="Logo" draggable="false" className="w-8 h-8 rounded-full border border-brand-blue/30" />
               <h3 className="text-3xl sm:text-4xl font-bold">INDIA FITNESS</h3>
             </div>
             <p className="text-sm sm:text-md font-light text-gray-400 mb-6 italic">Where Strength Meets Aesthetics</p>
@@ -262,9 +263,9 @@ export default function UI() {
           >
             <h2 className="text-2xl sm:text-4xl orbitron font-bold mb-8 md:mb-10 glow-text text-brand-blue">INITIATE CONNECTION</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-6 pointer-events-auto">
-               <input type="hidden" name="access_key" value="c1cefa47-9b89-476b-8bd1-ada665d42bea" />
+               <input type="hidden" name="access_key" value={atob("YzFjZWZhNDctOWI4OS00NzZiLThiZDEtYWRhNjY1ZDQyYmVh")} />
                {/* Honeypot Spam Protection */}
-               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
                <input type="email" name="email" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive text-sm md:text-base" required />
                <textarea name="message" rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive text-sm md:text-base" required />
                <button type="submit" className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive text-sm md:text-base cursor-pointer">
