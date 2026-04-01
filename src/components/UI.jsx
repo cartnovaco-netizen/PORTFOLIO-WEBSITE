@@ -5,50 +5,8 @@ import fitnessLogo from '../assets/india_fitness.png'
 
 export default function UI() {
   const [status, setStatus] = useState("")
-  const [isMuted, setIsMuted] = useState(true)
-  const audioRef = useRef(null)
-  const clickSoundRef = useRef(null)
-  const warpSoundRef = useRef(null)
-
-  useEffect(() => {
-    // Ambient Background Loop
-    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/21/audio_3108df04db.mp3") // Cyber ambient
-    audioRef.current.loop = true
-    audioRef.current.volume = 0.2
-
-    // UI Click Sound
-    clickSoundRef.current = new Audio("https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3") // UI Click
-    clickSoundRef.current.volume = 0.4
-
-    // Warp Sound
-    warpSoundRef.current = new Audio("https://cdn.pixabay.com/audio/2022/03/10/audio_c3c3a0b4e0.mp3") // Space Whoosh
-    warpSoundRef.current.volume = 0.3
-
-    return () => {
-      audioRef.current.pause()
-    }
-  }, [])
-
-  useEffect(() => {
-    if (audioRef.current && !isMuted) {
-      audioRef.current.play().catch(() => {
-        console.log("User interaction required for audio")
-        setIsMuted(true)
-      })
-    } else if (audioRef.current) {
-      audioRef.current.pause()
-    }
-  }, [isMuted])
-
-  const playClick = () => {
-    if (audioRef.current && clickSoundRef.current && !isMuted) {
-      clickSoundRef.current.currentTime = 0
-      clickSoundRef.current.play().catch(() => {})
-    }
-  }
 
   const handleSubmit = async (e) => {
-    playClick()
     e.preventDefault()
     setStatus("TRANSMITTING...")
     const formData = new FormData(e.target)
@@ -137,7 +95,6 @@ export default function UI() {
                <a 
                  href="https://www.instagram.com/knownaspratyush_/" 
                  target="_blank" 
-                 onClick={playClick}
                  className="bg-brand-purple/20 hover:bg-brand-purple/40 text-brand-purple border border-brand-purple/30 px-6 py-3 rounded-lg transition-all interactive text-sm sm:text-base cursor-pointer"
                >
                  Follow Journal
@@ -182,7 +139,6 @@ export default function UI() {
                <a 
                  href="https://india-fitness.vercel.app/" 
                  target="_blank" 
-                 onClick={playClick}
                  className="inline-block bg-brand-blue/80 hover:bg-brand-blue text-black font-bold orbitron px-6 py-3 sm:px-8 sm:py-4 rounded transition-all transform hover:scale-105 interactive shadow-[0_0_20px_rgba(0,212,255,0.4)] text-sm sm:text-base cursor-pointer"
                >
                  LIVE BROADCAST
@@ -312,23 +268,6 @@ export default function UI() {
 
   return (
     <div className="w-screen overflow-hidden">
-      {/* Audio Control (Option #3) - Highly Visible Neon Ripple */}
-      <div className="fixed top-8 right-8 z-[100] pointer-events-auto">
-        <button 
-          onClick={() => {
-            setIsMuted(!isMuted)
-            if (isMuted) playClick()
-          }}
-          className={`glass p-4 rounded-full border-2 ${isMuted ? 'border-brand-blue/30' : 'border-brand-purple animate-pulse shadow-[0_0_20px_#a855f7]'} text-brand-blue hover:bg-brand-blue/20 transition-all flex items-center gap-2 group interactive`}
-        >
-          {isMuted ? (
-            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">ENGAGE SYSTEM SOUNDS</span>
-          ) : (
-            <span className="orbitron text-[10px] tracking-widest hidden group-hover:inline opacity-0 group-hover:opacity-100 transition-opacity">SYSTEM ONLINE</span>
-          )}
-          <span className="text-lg animate-bounce">{isMuted ? "🔈" : "🔊"}</span>
-        </button>
-      </div>
 
       {sections.map(section => (
         <section key={section.id} id={section.id}>

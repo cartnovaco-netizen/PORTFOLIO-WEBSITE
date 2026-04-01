@@ -11,12 +11,6 @@ export default function Experience() {
   const scroll = useScroll()
   const groupRef = useRef()
   const starsRef = useRef()
-  const warpSoundRef = useRef(new Audio("https://cdn.pixabay.com/audio/2022/03/10/audio_c3c3a0b4e0.mp3"))
-
-  useEffect(() => {
-    warpSoundRef.current.volume = 0.2
-    warpSoundRef.current.loop = false
-  }, [])
   
   const isMobile = width < height
   const responsiveScale = isMobile ? Math.min(width * 0.12, 1) : 1
@@ -32,12 +26,6 @@ export default function Experience() {
       starsRef.current.scale.z = 1 + scrollVelocity * 20
       starsRef.current.scale.x = 1 + scrollVelocity * 2
       starsRef.current.scale.y = 1 + scrollVelocity * 2
-      
-      // Play Warp Sound if moving fast
-      if (scrollVelocity > 0.05 && warpSoundRef.current.paused) {
-        warpSoundRef.current.currentTime = 0
-        warpSoundRef.current.play().catch(() => {})
-      }
     }
 
     // Camera movement based on scroll - DIVE DEEPER
