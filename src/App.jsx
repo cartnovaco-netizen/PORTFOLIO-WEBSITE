@@ -8,6 +8,7 @@ import profileImg from './assets/profile.jpg'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isStarted, setIsStarted] = useState(false)
 
   useEffect(() => {
     // Simulate loading
@@ -18,8 +19,9 @@ function App() {
     <div className="h-screen w-full overflow-hidden bg-void-black cursor-none">
       <CustomCursor />
       <LoadingDots visible={!isLoaded} />
+      <BootScreen visible={isLoaded && !isStarted} onStart={() => setIsStarted(true)} />
       
-      <div className={`h-screen w-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`h-screen w-full transition-opacity duration-1000 ${isStarted ? 'opacity-100' : 'opacity-0'}`}>
         <Canvas
           shadows
           camera={{ position: [0, 2, 5], fov: 45 }}
@@ -31,7 +33,7 @@ function App() {
             <ScrollControls pages={7} damping={0.1} distance={1}>
               <Experience />
               <Scroll html>
-                <UI />
+                <UI isStarted={isStarted} />
               </Scroll>
             </ScrollControls>
           </Suspense>
@@ -50,6 +52,28 @@ function LoadingDots({ visible }) {
         <div className="w-3 h-3 bg-brand-blue rounded-full animate-bounce [animation-delay:-0.3s]"></div>
         <div className="w-3 h-3 bg-brand-purple rounded-full animate-bounce [animation-delay:-0.15s]"></div>
         <div className="w-3 h-3 bg-brand-blue rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  )
+}
+
+function BootScreen({ visible, onStart }) {
+  if (!visible) return null
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-void-black z-[110] overflow-hidden">
+      <div className="text-center">
+         <div className="text-brand-blue orbitron text-xs tracking-[0.5em] mb-4 opacity-50 animate-pulse">
+            NEURAL LINK DETECTED
+         </div>
+         <button 
+           onClick={onStart}
+           className="relative px-12 py-6 bg-transparent border-2 border-brand-blue text-brand-blue orbitron text-xl sm:text-2xl font-bold tracking-widest hover:bg-brand-blue hover:text-black transition-all duration-300 shadow-[0_0_15px_#00d4ff] hover:shadow-[0_0_50px_#00d4ff] interactive"
+         >
+           <span className="relative z-10 uppercase">INITIALIZE SYSTEM</span>
+         </button>
+         <div className="mt-8 text-brand-purple orbitron text-[10px] tracking-widest opacity-30 uppercase">
+            WARNING: AUDIO LEVELS OPTIMIZED FOR HEADPHONES
+         </div>
       </div>
     </div>
   )

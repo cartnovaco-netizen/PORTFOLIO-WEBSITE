@@ -3,11 +3,12 @@ import { motion } from 'framer-motion'
 import profileImg from '../assets/profile.jpg'
 import fitnessLogo from '../assets/india_fitness.png'
 
-export default function UI() {
+export default function UI({ isStarted }) {
   const [status, setStatus] = useState("")
   const [isMuted, setIsMuted] = useState(true)
   const audioRef = useRef(null)
   const clickSoundRef = useRef(null)
+  const warpSoundRef = useRef(null)
 
   useEffect(() => {
     // Ambient Background Loop
@@ -19,13 +20,23 @@ export default function UI() {
     clickSoundRef.current = new Audio("https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3") // UI Click
     clickSoundRef.current.volume = 0.4
 
+    // Warp Sound
+    warpSoundRef.current = new Audio("https://cdn.pixabay.com/audio/2022/03/10/audio_c3c3a0b4e0.mp3") // Space Whoosh
+    warpSoundRef.current.volume = 0.3
+
     return () => {
       audioRef.current.pause()
     }
   }, [])
 
   useEffect(() => {
-    if (audioRef.current && !isMuted) {
+    if (isStarted) {
+      setIsMuted(false)
+    }
+  }, [isStarted])
+
+  useEffect(() => {
+    if (audioRef.current && isStarted && !isMuted) {
       audioRef.current.play().catch(() => {
         console.log("User interaction required for audio")
         setIsMuted(true)
@@ -33,7 +44,7 @@ export default function UI() {
     } else if (audioRef.current) {
       audioRef.current.pause()
     }
-  }, [isMuted])
+  }, [isMuted, isStarted])
 
   const playClick = () => {
     if (audioRef.current && clickSoundRef.current && !isMuted) {
