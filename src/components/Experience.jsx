@@ -110,16 +110,17 @@ function Desk() {
         <meshStandardMaterial color="#333" metalness={0.9} roughness={0.1} />
       </mesh>
 
-         <mesh position={[0, 0.4, -0.15]} rotation={[-0.2, 0, 0]}>
+      {/* Laptop Screen */}
+      <group position={[0, 0.12, -0.15]} rotation={[-0.2, 0, 0]}>
+         <mesh position={[0, 0.4, 0]}>
             <boxGeometry args={[1.2, 0.8, 0.05]} />
             <meshStandardMaterial color="#222" />
          </mesh>
-         {/* Live Project Logo (Option #1) */}
-         {/* <mesh position={[0, 0.4, 0.03]}>
+         <mesh position={[0, 0.4, 0.03]}>
             <planeGeometry args={[0.7, 0.7]} />
             <meshStandardMaterial map={cartnovaTexture} emissive="#ffffff" emissiveIntensity={1} transparent />
             <pointLight position={[0, 0, 0.1]} intensity={0.5} color="#ffd400" distance={1} />
-         </mesh> */}
+         </mesh>
       </group>
 
       {/* Floating Vertical Monitor */}
@@ -128,10 +129,10 @@ function Desk() {
           <boxGeometry args={[0.6, 1.2, 0.1]} />
           <meshStandardMaterial color="#111" />
         </mesh>
-        {/* <mesh position={[0, 0, 0.06]}>
+        <mesh position={[0, 0, 0.06]}>
           <planeGeometry args={[0.5, 1.1]} />
           <meshStandardMaterial map={profileTexture} emissive="#ffffff" emissiveIntensity={0.2} />
-        </mesh> */}
+        </mesh>
       </group>
     </group>
   )
