@@ -28,14 +28,18 @@ export default function Experience() {
       starsRef.current.scale.y = 1 + scrollVelocity * 2
     }
 
-    // Camera movement based on scroll
+    // Camera movement based on scroll - DIVE DEEPER
     const zBase = isMobile ? 8 : 5
-    const targetX = Math.sin(scrollOffset * Math.PI * 4) * (isMobile ? 1.5 : 3)
-    const targetZ = zBase - (scrollOffset * 10)
-    const targetY = (isMobile ? 1.5 : 2) + Math.cos(scrollOffset * Math.PI * 2) * 1.5
+    const targetX = Math.sin(scrollOffset * Math.PI * 2) * (isMobile ? 1.5 : 3)
+    const targetZ = zBase - (scrollOffset * 25) // Increased from 10 to 25 to pass all spheres
+    const targetY = (isMobile ? 1.5 : 2) + Math.cos(scrollOffset * Math.PI) * 1.5
 
-    state.camera.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), 0.05)
-    state.camera.lookAt(0, 0, -scrollOffset * 5)
+    const targetPos = new THREE.Vector3(targetX, targetY, targetZ)
+    state.camera.position.lerp(targetPos, 0.05)
+    
+    // Look ahead slightly based on scroll
+    const lookAtZ = -scrollOffset * 20
+    state.camera.lookAt(0, 0, lookAtZ)
 
     // Parallax on mouse
     const mouseX = state.mouse.x * 0.5

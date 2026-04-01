@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import profileImg from '../assets/profile.jpg'
+import fitnessLogo from '../assets/india_fitness.png'
 
 export default function UI() {
   const [status, setStatus] = useState("")
