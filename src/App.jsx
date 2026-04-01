@@ -1,12 +1,15 @@
 import React, { Suspense, useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
+import { ScrollControls, Scroll } from '@react-three/drei'
+import Experience from './components/Experience'
+import UI from './components/UI'
 import CustomCursor from './components/CustomCursor'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setIsLoaded(true), 1000)
+    setTimeout(() => setIsLoaded(true), 1500)
   }, [])
 
   return (
@@ -15,12 +18,21 @@ function App() {
       <LoadingDots visible={!isLoaded} />
       
       <div className={`h-screen w-full transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <Canvas camera={{ position: [0, 0, 5] }}>
-           <ambientLight intensity={0.5} />
-           <mesh>
-              <boxGeometry args={[1, 1, 1]} />
-              <meshStandardMaterial color="#00d4ff" emissive="#00d4ff" emissiveIntensity={2} />
-           </mesh>
+        <Canvas
+          shadows
+          camera={{ position: [0, 2, 5], fov: 45 }}
+          onCreated={({ gl }) => {
+            gl.setClearColor('#0a0a0a')
+          }}
+        >
+          <Suspense fallback={null}>
+            <ScrollControls pages={7} damping={0.1} distance={1}>
+              <Experience />
+              <Scroll html>
+                <UI />
+              </Scroll>
+            </ScrollControls>
+          </Suspense>
         </Canvas>
       </div>
     </div>
@@ -31,7 +43,12 @@ function LoadingDots({ visible }) {
   if (!visible) return null
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-void-black z-[100] orbitron">
-      <div className="text-brand-blue text-4xl mb-8 glow-text animate-pulse uppercase">RECONNECTING...</div>
+      <div className="text-brand-blue text-4xl mb-8 glow-text animate-pulse uppercase">INITIALIZING VOID...</div>
+      <div className="flex space-x-2">
+        <div className="w-3 h-3 bg-brand-blue rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+        <div className="w-3 h-3 bg-brand-purple rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+        <div className="w-3 h-3 bg-brand-blue rounded-full animate-bounce"></div>
+      </div>
     </div>
   )
 }
