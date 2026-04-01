@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import profileImg from '../assets/profile.jpg'
 import fitnessLogo from '../assets/india_fitness.png'
 
-export default function UI({ isStarted }) {
+export default function UI() {
   const [status, setStatus] = useState("")
   const [isMuted, setIsMuted] = useState(true)
   const audioRef = useRef(null)
@@ -30,13 +30,7 @@ export default function UI({ isStarted }) {
   }, [])
 
   useEffect(() => {
-    if (isStarted) {
-      setIsMuted(false)
-    }
-  }, [isStarted])
-
-  useEffect(() => {
-    if (audioRef.current && isStarted && !isMuted) {
+    if (audioRef.current && !isMuted) {
       audioRef.current.play().catch(() => {
         console.log("User interaction required for audio")
         setIsMuted(true)
@@ -44,7 +38,7 @@ export default function UI({ isStarted }) {
     } else if (audioRef.current) {
       audioRef.current.pause()
     }
-  }, [isMuted, isStarted])
+  }, [isMuted])
 
   const playClick = () => {
     if (audioRef.current && clickSoundRef.current && !isMuted) {
