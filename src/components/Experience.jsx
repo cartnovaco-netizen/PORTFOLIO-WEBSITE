@@ -62,10 +62,14 @@ export default function Experience() {
       <Sparkles count={200} scale={[20, 20, 10]} size={2} speed={0.5} opacity={0.3} color="#00d4ff" />
       <fog attach="fog" args={['#0a0a0a', 5, 15]} />
 
-      {/* Floating 3D Elements */}
-      <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+      {/* Floating 3D Elements - Temporarily Simple Mesh to find crash */}
+      {/* <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
         <Desk />
-      </Float>
+      </Float> */}
+      <mesh position={[0, -0.5, 0]}>
+         <boxGeometry args={[4, 0.1, 2]} />
+         <meshStandardMaterial color="#1a1a1a" />
+      </mesh>
 
       <Float speed={3} rotationIntensity={1} floatIntensity={2} position={[3, 2, -2]}>
         <SkillSphere color="#00d4ff" name="React" />
