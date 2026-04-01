@@ -6,6 +6,25 @@ import fitnessLogo from '../assets/india_fitness.png'
 export default function UI() {
   const [status, setStatus] = useState("")
 
+  useEffect(() => {
+    // Hardening: Prevent Right-Click for casual inspection
+    const handleContextMenu = (e) => e.preventDefault()
+    document.addEventListener('contextmenu', handleContextMenu)
+    
+    // Prevent common DevTools shortcuts
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.key === 'F12')) {
+        e.preventDefault()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus("TRANSMITTING...")
@@ -244,6 +263,8 @@ export default function UI() {
             <h2 className="text-2xl sm:text-4xl orbitron font-bold mb-8 md:mb-10 glow-text text-brand-blue">INITIATE CONNECTION</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-6 pointer-events-auto">
                <input type="hidden" name="access_key" value="c1cefa47-9b89-476b-8bd1-ada665d42bea" />
+               {/* Honeypot Spam Protection */}
+               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
                <input type="email" name="email" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive text-sm md:text-base" required />
                <textarea name="message" rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive text-sm md:text-base" required />
                <button type="submit" className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive text-sm md:text-base cursor-pointer">
