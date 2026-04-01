@@ -270,7 +270,7 @@ export default function UI() {
             </form>
             <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 pointer-events-auto text-[10px] sm:text-xs">
                <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">INSTAGRAM</a>
-               <a href="https://github.com/cartnovaco-netizen" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">GITHUB</a>
+               <a href="https://github.com/KNOWNASPRATYUSH" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">GITHUB</a>
                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cartnova.co@gmail.com" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">EMAIL</a>
             </div>
           </motion.div>
