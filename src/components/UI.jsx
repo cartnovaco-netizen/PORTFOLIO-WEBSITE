@@ -249,15 +249,15 @@ export default function UI() {
                <input type="hidden" name="access_key" value="c1cefa47-9b89-476b-8bd1-ada665d42bea" />
                <input type="email" name="email" placeholder="TRANSMISSION CHANNEL (EMAIL)" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center interactive text-sm md:text-base" required />
                <textarea name="message" rows="3" placeholder="YOUR MESSAGE TO PRATYUSH" className="bg-black/50 border border-brand-blue/30 px-6 py-4 rounded-xl outline-none focus:border-brand-blue text-brand-blue text-center resize-none interactive text-sm md:text-base" required />
-               <button type="submit" onClick={playClick} className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive text-sm md:text-base cursor-pointer">
+               <button type="submit" className="bg-brand-blue text-black font-bold orbitron py-4 rounded-xl hover:bg-brand-purple hover:text-white transition-all transform hover:scale-105 interactive text-sm md:text-base cursor-pointer">
                  {status || "SEND PACKET"}
                </button>
                {status && <p className="text-[10px] orbitron text-brand-blue animate-pulse mt-2">{status}</p>}
             </form>
             <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 pointer-events-auto text-[10px] sm:text-xs">
-               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" onClick={playClick} className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">INSTAGRAM</a>
-               <a href="https://github.com/cartnovaco-netizen" target="_blank" onClick={playClick} className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">GITHUB</a>
-               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cartnova.co@gmail.com" target="_blank" onClick={playClick} className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">EMAIL</a>
+               <a href="https://www.instagram.com/knownaspratyush_/" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">INSTAGRAM</a>
+               <a href="https://github.com/cartnovaco-netizen" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">GITHUB</a>
+               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cartnova.co@gmail.com" target="_blank" className="text-brand-blue hover:text-brand-purple transition-all interactive cursor-pointer">EMAIL</a>
             </div>
           </motion.div>
           <p className="mt-8 md:mt-12 text-brand-blue font-bold orbitron text-[10px] md:text-[12px] tracking-[0.3em] md:tracking-[0.5em] glow-text">MADE UNDER CARTNOVA BY PRATYUSH</p>
